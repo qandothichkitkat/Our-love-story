@@ -118,10 +118,16 @@ button{font:inherit}
 .hero,.hero *{-webkit-user-select:none;-moz-user-select:none;user-select:none}
 .hero img{-webkit-user-drag:none;user-drag:none}
 .sb-wrap{display:grid;justify-items:center;gap:20px;width:100%;position:relative;z-index:2}
-.sb-stage{
-  display:flex;align-items:center;justify-content:center;width:100%;
-  position:relative;
-  touch-action:pan-y;
+.sb-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+  touch-action: pan-y;
+  padding-top: 190px;
+  padding-bottom: 30px;
+  box-sizing: border-box;
 }
 .sb-arrow{
   flex:none;display:inline-flex;align-items:center;justify-content:center;padding:6px 2px;
@@ -363,6 +369,168 @@ button{font:inherit}
   transition:opacity .4s ease;
 }
 .sb-hint.gone{opacity:0}
+.sb-note {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: min(410px, 88%);
+  margin: 0;
+  padding: 0 12px 12px;
+  box-sizing: border-box;
+  color: #B78391;
+  font-family: 'Newsreader', serif;
+  z-index: 80;
+  text-align: center;
+}
+
+.sb-note[hidden] {
+  display: none !important;
+}
+
+.sb-lock {
+  width: 100%;
+  pointer-events: auto;
+
+  /* Khung chữ nhật màu hồng trong suốt */
+  background: rgba(255, 235, 240, 0.50);
+
+  /* Viền mảnh, nhẹ nhàng */
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 18px;
+
+  /* Tạo khoảng cách giữa nội dung và mép khung */
+  box-sizing: border-box;
+  padding: 22px 18px 20px;
+
+  /* Bóng nhẹ giúp khung tách khỏi ảnh nền */
+  box-shadow: 0 4px 20px rgba(100, 45, 65, 0.08);
+}
+
+.sb-lock-title {
+  margin: 0 0 14px;
+  font-family: 'Newsreader', serif;
+  font-size: 23px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: #96566B;
+}
+
+.sb-lock-slots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 0 auto 10px;
+}
+
+.sb-lock-slot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 36px;
+  border-bottom: 2px solid #96566B;
+  font-family: 'Newsreader', serif;
+  font-size: 23px;
+  color: #96566B;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.sb-lock-slot.filled {
+  transform: scale(1.08);
+}
+
+.sb-lock-message {
+  min-height: 20px;
+  margin: 0 0 10px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #96566B;
+}
+
+.sb-lock-keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 36px);
+  justify-content: center;
+  gap: 5px 12px;
+  margin: 0 auto;
+}
+
+.sb-lock-keypad button {
+  width: 36px;
+  height: 30px;
+  padding: 0;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: #96566B;
+  font-family: 'Newsreader', serif;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background 0.18s ease, transform 0.18s ease;
+  touch-action: manipulation;
+}
+
+.sb-lock-keypad button:hover {
+  background: rgba(183, 131, 145, 0.13);
+  transform: translateY(-1px);
+}
+
+.sb-lock-keypad button:active {
+  background: rgba(183, 131, 145, 0.22);
+  transform: scale(0.94);
+}
+
+.sb-lock.shake {
+  animation: sb-lock-shake 0.35s ease;
+}
+
+.sb-lock.unlocked .sb-lock-slot {
+  border-color: #8EAD91;
+  color: #8EAD91;
+  transform: translateY(-3px);
+}
+
+.sb-lock.unlocked .sb-lock-title,
+.sb-lock.unlocked .sb-lock-message {
+  color: #8EAD91;
+}
+
+@keyframes sb-lock-shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+@media (max-width: 480px) {
+  .sb-lock-title {
+    font-size: 20px;
+  }
+
+  .sb-lock-slots {
+    gap: 7px;
+  }
+
+  .sb-lock-slot {
+    width: 27px;
+    height: 32px;
+  }
+
+  .sb-lock-keypad {
+    gap: 4px 10px;
+  }
+}
+
+.sb-note[hidden] {
+  display: none !important;
+}
+
+.sb-note[hidden] {
+  display: none !important;
+}
+.sb-note[hidden]{
+  display:none !important;
+}
 .sb-wrap.intro .sb-full img,.sb-wrap.intro .sb-half-img{filter:url(#sb-mblur-1)}
 .sb-wrap.intro.b2 .sb-full img,.sb-wrap.intro.b2 .sb-half-img{filter:url(#sb-mblur-2)}
 .sb-wrap.intro .sb-caption{animation:none}
@@ -430,6 +598,254 @@ button{font:inherit}
 
 .foot{font-size:11.5px;letter-spacing:var(--track-caps);text-transform:uppercase;
   color:var(--ink-faint);text-align:center;margin-top:clamp(48px,7vh,84px);padding-bottom:44px}
+/* GIAO DIỆN QUÀ TẶNG TOÀN MÀN HÌNH */
+.gift-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: block;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: #e9dfd0;
+}
+
+.gift-screen[hidden] {
+  display: none !important;
+}
+
+/* KHU VỰC NỘI DUNG CUỘN */
+.gift-content {
+  position: relative;
+  width: 100%;
+  min-height: 250vh;
+  box-sizing: border-box;
+}
+
+.gift-screen::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: url("nen-hoa.jpg") center center / cover no-repeat;
+  pointer-events: none;
+}
+
+.gift-screen[hidden] {
+  display: none !important;
+}
+
+.gift-back {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 50%;
+  background: rgba(255, 248, 244, 0.75);
+  color: #754454;
+  font-size: 28px;
+  cursor: pointer;
+  box-shadow: 0 2px 12px rgba(65, 35, 40, 0.12);
+}
+
+.gift-back:hover {
+  background: rgba(255, 255, 255, 0.95);
+}
+
+@media (max-width: 600px) {
+  .gift-back {
+    top: 14px;
+    left: 14px;
+  }
+}
+/* Giao dien trang qua tang 20-10 */
+.gift-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow-y: auto;
+  padding: 70px 18px 24px;
+  box-sizing: border-box;
+
+  background-color: #d8c7ad;
+  background-image: url("nen-hoa.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.gift-screen[hidden] {
+  display: none !important;
+}
+
+.gift-content {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: min(100%, 760px);
+  margin: auto;
+  box-sizing: border-box;
+}
+
+.gift-letter {
+  display: block;
+  width: auto;
+  height: auto;
+
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+
+  padding: 7px;
+  box-sizing: border-box;
+  background: #fffdf8;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 18px 45px rgba(48, 30, 20, 0.35);
+}
+
+/* Nut quay lai */
+.gift-back {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 100000;
+
+  width: 46px;
+  height: 46px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  background: rgba(255, 248, 244, 0.9);
+  color: #754454;
+
+  font-size: 28px;
+  cursor: pointer;
+  box-shadow: 0 3px 16px rgba(65, 35, 40, 0.2);
+}
+
+@media (max-width: 600px) {
+  .gift-screen {
+    padding: 65px 10px 18px;
+  }
+
+  .gift-content {
+    width: 100%;
+  }
+
+  .gift-letter {
+    max-width: 100%;
+    max-height: 76vh;
+    padding: 4px;
+  }
+
+  .gift-back {
+    top: 12px;
+    left: 12px;
+    width: 42px;
+    height: 42px;
+  }
+}
+/* Hien thi buc thu tay tren nen hoa */
+.gift-content {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  padding: 80px 20px 30px;
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Anh buc thu */
+.gift-letter {
+  display: block;
+  width: auto;
+  height: auto;
+
+  max-width: min(650px, 90vw);
+  max-height: 78vh;
+  object-fit: contain;
+
+  padding: 7px;
+  box-sizing: border-box;
+  background: #fffdf8;
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 12px 35px rgba(45, 30, 20, 0.3);
+}
+
+@media (max-width: 600px) {
+  .gift-content {
+    padding: 70px 10px 20px;
+  }
+
+  .gift-letter {
+    max-width: 94vw;
+    max-height: 76vh;
+  }
+}
+/* Dong chu nhan hoa ben duoi buc thu */
+.gift-bouquet-link {
+  display: inline-block;
+  margin-top: 18px;
+  padding: 12px 22px;
+
+  color: #85485d;
+  background: rgba(255, 247, 242, 0.88);
+  border: 1px solid rgba(173, 112, 132, 0.45);
+  border-radius: 30px;
+
+  font-family: inherit;
+  font-size: 15px;
+  text-align: center;
+  text-decoration: none;
+  line-height: 1.5;
+
+  box-shadow: 0 4px 14px rgba(91, 50, 55, 0.12);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.gift-bouquet-link:hover {
+  background: #fff;
+  transform: translateY(-2px);
+}
+
+.gift-bouquet-link:active {
+  transform: scale(0.98);
+}
+
+/* Xep buc thu va dong chu theo chieu doc */
+.gift-content {
+  flex-direction: column;
+  gap: 0;
+}
+
+@media (max-width: 600px) {
+  .gift-bouquet-link {
+    margin-top: 14px;
+    padding: 10px 17px;
+    font-size: 14px;
+  }
+}
 </style>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -470,6 +886,42 @@ button{font:inherit}
         <button class="sb-arrow left" id="sbLeft" aria-label="previous page">
           <svg viewBox="0 0 14 44" width="14" height="44" fill="none" aria-hidden="true"><polyline points="11,3 3,22 11,41" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
+        <div class="sb-note" id="sbNote" hidden>
+  <div class="sb-lock" id="sbLock">
+    <p class="sb-lock-title">Hãy giải mã khóa này</p>
+
+    <div class="sb-lock-slots" id="sbLockSlots">
+      <span class="sb-lock-slot"></span>
+      <span class="sb-lock-slot"></span>
+      <span class="sb-lock-slot"></span>
+      <span class="sb-lock-slot"></span>
+      <span class="sb-lock-slot"></span>
+      <span class="sb-lock-slot"></span>
+    </div>
+
+    <p class="sb-lock-message" id="sbLockMessage">
+      Nhập mật mã gồm 6 chữ số
+    </p>
+
+    <div class="sb-lock-keypad" id="sbLockKeypad">
+      <button type="button" data-key="1">1</button>
+      <button type="button" data-key="2">2</button>
+      <button type="button" data-key="3">3</button>
+
+      <button type="button" data-key="4">4</button>
+      <button type="button" data-key="5">5</button>
+      <button type="button" data-key="6">6</button>
+
+      <button type="button" data-key="7">7</button>
+      <button type="button" data-key="8">8</button>
+      <button type="button" data-key="9">9</button>
+
+      <button type="button" data-key="delete">⌫</button>
+      <button type="button" data-key="0">0</button>
+      <button type="button" data-key="confirm">✓</button>
+    </div>
+  </div>
+</div>
         <div class="sb-3d" id="sb3d">
           <div class="sb-tilt" id="sbTilt">
             <div class="sb-cast ambient" aria-hidden="true"></div>
@@ -493,6 +945,7 @@ button{font:inherit}
         <button class="tool" id="loupeBtn" aria-label="magnifier" aria-pressed="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="8.8" cy="8.8" r="5.8"/><path d="M13 13l4.4 4.4"/><path d="M6.4 7.2a3.2 3.2 0 0 1 2.4-1.4" opacity=".55"/></svg></button>
       </div>
       <p class="sb-hint" id="sbHint">Drag the page to turn · Drag the glass across it</p>
+      
     </div>
 
     <button class="hero-down" id="heroDown" aria-label="scroll to about">
@@ -534,7 +987,32 @@ button{font:inherit}
 
   <p class="foot">Sứa iuuuu · Chít thúiiii</p>
 </main>
+<div class="gift-screen" id="giftScreen" hidden>
+  <button
+    class="gift-back"
+    id="giftBack"
+    type="button"
+    aria-label="Quay lại trang chính"
+    title="Quay lại trang chính"
+  >&#8592;</button>
 
+  <div class="gift-content" id="giftContent">
+  <img
+    class="gift-letter"
+    src="thu-tay.png"
+    alt="Bức thư viết tay"
+  >
+
+  <a
+    class="gift-bouquet-link"
+    href="https://digibouquet.vercel.app/bouquet/d8881383-5407-4ecc-b471-2e16e9866a12"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    Sứa thúiii chạm vào đây để nhận hoa nhé ạ ♡
+  </a>
+</div>
+</div>
 <script>
 /* =====================================================================
    Meng To — sketchbook hero.
@@ -553,6 +1031,7 @@ const PAGES=[
   {file:'joo-chiat.png',          title:'Family pics',      },
   {file:'lau-pa-sat.png',         title:'Our last date in 2026',                },
   {file:'marina-bay-skyline.png', title:'Last meeting',        },
+  {file:'20-10-26.png', title:'20-10 Gift',        },
 ];
 PAGES.forEach(p=>p.url=DIR+p.file);
 const M=PAGES.length, LAND=6;
@@ -653,6 +1132,7 @@ function paint(){
   book.appendChild(a);book.appendChild(b);
   layout();
   caption();
+  updateNote();
   marks();
   if(typeof syncZoomLayer==='function')syncZoomLayer();
   if(typeof placeLoupe==='function')placeLoupe();
@@ -669,6 +1149,100 @@ function caption(){
   }
 }
 let capOut=null,capIn=null;
+const noteBox = document.getElementById('sbNote');
+const lockBox = document.getElementById('sbLock');
+const lockSlots = document.querySelectorAll('.sb-lock-slot');
+const lockMessage = document.getElementById('sbLockMessage');
+const lockKeypad = document.getElementById('sbLockKeypad');
+
+// Mật mã dùng để thử nghiệm
+const PASSCODE = '030926';
+
+let enteredCode = '';
+let isUnlocked = false;
+
+function renderLockCode() {
+  lockSlots.forEach((slot, i) => {
+    const filled = i < enteredCode.length;
+    slot.textContent = filled ? '•' : '';
+    slot.classList.toggle('filled', filled);
+  });
+}
+
+function updateNote() {
+  if (!noteBox) return;
+
+  noteBox.hidden = idx !== 7 || !!turn;
+
+  if (idx !== 7 || turn) return;
+
+  renderLockCode();
+}
+
+if (lockKeypad) {
+  lockKeypad.addEventListener('click', function(event) {
+  event.stopPropagation();
+
+  const button = event.target.closest('button[data-key]');
+  if (!button) return;
+
+  const key = button.dataset.key;
+
+  // Đã mở khóa: bấm nút ✓ để vào lại trang nền hoa
+  if (isUnlocked) {
+    if (key === 'confirm' && giftScreen.hidden) {
+      giftScreen.hidden = false;
+      document.body.style.overflow = 'hidden';
+    }
+    return;
+  }
+
+  if (key === 'delete') {
+    enteredCode = enteredCode.slice(0, -1);
+    lockMessage.textContent = 'Nhập mật mã gồm 6 chữ số';
+    lockBox.classList.remove('shake');
+    renderLockCode();
+    return;
+  }
+
+  if (key === 'confirm') {
+    if (enteredCode.length !== 6) {
+      lockMessage.textContent = 'Hãy nhập đủ 6 chữ số nhé!';
+      return;
+    }
+
+    if (enteredCode === PASSCODE) {
+      isUnlocked = true;
+      lockBox.classList.add('unlocked');
+      lockMessage.textContent = 'Mở khóa thành công ♥';
+      renderLockCode();
+
+      setTimeout(() => {
+        giftScreen.hidden = false;
+        document.body.style.overflow = 'hidden';
+      }, 800);
+    } else {
+      lockMessage.textContent = 'Chưa đúng rồi, thử lại nhé ♥';
+      lockBox.classList.remove('shake');
+
+      void lockBox.offsetWidth;
+      lockBox.classList.add('shake');
+
+      enteredCode = '';
+      renderLockCode();
+    }
+
+    return;
+  }
+
+  if (/^\d$/.test(key) && enteredCode.length < 6) {
+    enteredCode += key;
+    lockMessage.textContent = 'Nhập mật mã gồm 6 chữ số';
+    lockBox.classList.remove('shake');
+    renderLockCode();
+  }
+});
+}
 function fadeCaption(t){
   if(!capOut||!capIn)return;
   /* the old title is gone before the new one arrives, so they never
@@ -780,17 +1354,37 @@ let drag=null;
 function bookRect(){return book.getBoundingClientRect()}
 function hideHint(){hint.classList.add('gone')}
 
-stage.addEventListener('pointerdown',e=>{
-  if(e.button!==0)return;
-  e.preventDefault();                     /* no text selection, no image drag */
-  const onBook=e.target.closest('.sb-zone');
+stage.addEventListener('pointerdown', e => {
+  // Không can thiệp thao tác bấm bàn phím nhập mã khóa
+  if (e.target.closest('#sbNote')) {
+    return;
+  }
+
+  if (e.button !== 0) return;
+
+  e.preventDefault();
+
+  const onBook = e.target.closest('.sb-zone');
   stage.setPointerCapture(e.pointerId);
   hideHint();
-  if(!onBook||introOn)return;
-  const r=bookRect();
-  const dir=(e.clientX-r.left)/r.width>0.5?'next':'prev';
-  startTurn(dir,0);
-  drag={dir:dir,x0:e.clientX,w:r.width,moved:0,vel:0,tPrev:performance.now()};
+
+  if (!onBook || introOn) return;
+
+  const r = bookRect();
+  const dir = (e.clientX - r.left) / r.width > 0.5
+    ? 'next'
+    : 'prev';
+
+  startTurn(dir, 0);
+
+  drag = {
+    dir: dir,
+    x0: e.clientX,
+    w: r.width,
+    moved: 0,
+    vel: 0,
+    tPrev: performance.now()
+  };
 });
 stage.addEventListener('pointermove',e=>{
   if(!drag)return;
@@ -1055,6 +1649,14 @@ function startIntro(){
   }
   setTimeout(startIntro,220);
 })();
+
+const giftScreen = document.getElementById('giftScreen');
+const giftBack = document.getElementById('giftBack');
+
+giftBack.addEventListener('click', () => {
+  giftScreen.hidden = true;
+  document.body.style.overflow = '';
+});
 </script>
 </body>
 </html>
